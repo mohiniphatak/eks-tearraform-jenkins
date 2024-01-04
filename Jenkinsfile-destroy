@@ -15,6 +15,7 @@ pipeline {
         }
         stage('Search and Destroy') {
             steps {
+                sh "export AWS_REGION=us-east-1"
                 sh 'cd patterns/multi-tenancy-with-teams/; terraform destroy --auto-approve'
                 
             }
