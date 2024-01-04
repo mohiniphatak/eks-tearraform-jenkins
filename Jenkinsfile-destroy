@@ -7,6 +7,15 @@ pipeline {
                 echo 'Hello World'
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/aws-ia/terraform-aws-eks-blueprints.git']]])
                         }}
+        stage('Terraform provision') {
+            steps {
+                sh """
+                    
+                    terraform init
+                    export AWS_REGION=us-east-1
+                """
+            }
+        }
         
         stage('License to Kill?') {
             steps {
@@ -15,7 +24,6 @@ pipeline {
         }
         stage('Search and Destroy') {
             steps {
-                sh "export AWS_REGION=us-east-1"
                 sh 'cd patterns/multi-tenancy-with-teams/; terraform destroy --auto-approve'
                 
             }
