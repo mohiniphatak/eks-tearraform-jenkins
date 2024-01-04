@@ -10,7 +10,7 @@ pipeline {
         stage('Terraform provision') {
             steps {
                 sh """
-                    cd examples/eks-cluster-with-new-vpc/
+                    cd patterns/multi-tenancy-with-teams/
                     terraform init
                     export AWS_REGION=us-west-2
                     terraform plan
@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Search and Destroy') {
             steps {
-                sh 'cd examples/eks-cluster-with-new-vpc/; terraform destroy --auto-approve'
+                sh 'cd patterns/multi-tenancy-with-teams/; terraform destroy --auto-approve'
                 
             }
         }
