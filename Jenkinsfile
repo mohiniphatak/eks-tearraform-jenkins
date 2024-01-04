@@ -12,7 +12,7 @@ pipeline {
                 sh """
                     cd patterns/multi-tenancy-with-teams/
                     terraform init
-                    export AWS_REGION=us-west-2
+                    export AWS_REGION=us-east-1
                     terraform plan
                     terraform apply --auto-approve
                 """
